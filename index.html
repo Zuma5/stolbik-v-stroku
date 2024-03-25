@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Comma Separated</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        textarea {
+            width: 300px;
+            height: 150px;
+            border: 3px solid lightskyblue;
+            resize: auto;
+        }
+        .checkbox {
+            display: flex;
+            align-items: center;
+            margin: 8px;
+        }
+        .checkbox>input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: gold;
+        }
+        .checkbox>label {
+            margin-left: 5px;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>   
+    <textarea id="text" placeholder=" Сюда текст вводить..." oninput="convertText()"></textarea>
+    <textarea id="output" placeholder=" Отсюда забирать..." readonly></textarea>
+    <div class="checkbox">
+        <input type="checkbox" id="addSpaces" onchange="convertText()">
+        <label for="addSpaces">Добавить пробелы</label>
+    </div>
+
+    <script>
+        function convertText() {
+            const inputTextArea = document.getElementById('text');
+            const outputTextArea = document.getElementById('output');
+            const addSpaces = document.getElementById('addSpaces').checked;
+
+            const lines = inputTextArea.value.split('\n');
+            let result;
+            if (addSpaces) {
+                result = lines.join(', ');
+            } else {
+                result = lines.join(',');
+            }
+
+            outputTextArea.value = result;
+        }
+    </script>
+</body>
+</html>

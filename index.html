@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text to Comma Separated</title>
-    <link rel="icon" type="image/webp" href="img/string.webp">
+    <link rel="icon" type="image/png" href="img/pen-icon.png">
     <style>
         body {
             font-family: math;
-            background-color: #191919;
+            background-color: #555d5f;
         }
         .container {
-            max-width: 650px;
+            max-width: 90%;
             display: flex;
             justify-content: space-between;
+            margin: 20px;
         }
         .copy-icon {
             width: 20px;
@@ -26,28 +27,33 @@
             opacity: 1;
         }
         textarea {
-            width: 300px;
+            width: 49%;
             height: 150px;
-            background-color: #191919;
-            color: bisque;
-            border: 3px solid lightgreen;
+            background-color: #3e4245;
+            color: #f7baa2;
+            border: 3px solid #f7baa2;
             resize: unset;
         }
         .checkbox {
             display: flex;
+            width: 88%;
+            justify-content: space-between;
             align-items: center;
-            margin: 8px;
+            margin: 15px 35px;
         }
-        .checkbox>input {
+        .checkbox div {
+            display: flex;
+        }
+
+        .checkbox div>input {
             width: 20px;
             height: 20px;
             cursor: pointer;
-            accent-color: gold;
+            accent-color: #cd6272;
         }
-        .checkbox>label {
-            margin-left: 5px;
-            margin-top: 2px;
-            color: bisque;
+        .checkbox div>label {
+            margin: 6px 8px;
+            color: #b1bcd5;
         }
         img {
             display: inline-block;
@@ -59,11 +65,14 @@
     <div class="container">
         <textarea id="text" placeholder=" Сюда текст вводить..." oninput="convertText()"></textarea>
         <textarea id="output" placeholder=" Отсюда забирать..." readonly></textarea>
-        <img class="copy-icon" onclick="copyText()" src="img/copy_icon.svg" alt="Copy Icon">
     </div>
+
     <div class="checkbox">
-        <input type="checkbox" id="addSpaces" onchange="convertText()">
-        <label for="addSpaces">Добавить пробелы</label>
+        <div>
+            <input type="checkbox" id="addSpaces" onchange="convertText()">
+            <label for="addSpaces">Добавить пробелы</label>
+        </div>
+        <img class="copy-icon" onclick="copyText()" src="img/copy_icon.svg" alt="Copy Icon">
     </div>
 
     <script>

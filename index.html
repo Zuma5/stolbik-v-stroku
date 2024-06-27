@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text to Comma Separated</title>
+    <title>Text Separated</title>
     <link rel="icon" type="image/png" href="img/pen-icon.png">
     <style>
         body {
             font-family: math;
             background-color: #555d5f;
+            color: #f7baa2;
         }
         .container {
             max-width: 90%;
@@ -32,7 +33,7 @@
             background-color: #3e4245;
             color: #f7baa2;
             border: 3px solid #f7baa2;
-            resize: unset;
+            resize: none;
         }
         .checkbox {
             display: flex;
@@ -43,6 +44,7 @@
         }
         .checkbox div {
             display: flex;
+            align-items: center;
         }
 
         .checkbox div>input {
@@ -54,10 +56,6 @@
         .checkbox div>label {
             margin: 6px 8px;
             color: #b1bcd5;
-        }
-        img {
-            display: inline-block;
-            width: 20px;
         }
     </style>
 </head>
@@ -72,6 +70,14 @@
             <input type="checkbox" id="addSpaces" onchange="convertText()">
             <label for="addSpaces">Добавить пробелы</label>
         </div>
+        <div>
+            <input type="radio" id="comma" name="delimiter" value="comma" checked onchange="convertText()">
+            <label for="comma">Запятая</label>
+        </div>
+        <div>
+            <input type="radio" id="slash" name="delimiter" value="slash" onchange="convertText()">
+            <label for="slash">Слеш</label>
+        </div>
         <img class="copy-icon" onclick="copyText()" src="img/copy_icon.svg" alt="Copy Icon">
     </div>
 
@@ -81,12 +87,21 @@
             const outputTextArea = document.getElementById('output');
             const addSpaces = document.getElementById('addSpaces').checked;
 
-            const lines = inputTextArea.value.split('\n');
-            let result;
+            let delimiter = ','; // По умолчанию разделитель - запятая
+
+            // Определяем выбранный разделитель
+            const commaRadio = document.getElementById('comma');
+            const slashRadio = document.getElementById('slash');
+
+            if (slashRadio.checked) {
+                delimiter = '/'; // Если выбран слеш, используем его как разделитель
+            }
+
+            let result = inputTextArea.value.split('\n').join(delimiter);
+
+            // Добавляем пробелы, если нужно
             if (addSpaces) {
-                result = lines.join(', ');
-            } else {
-                result = lines.join(',');
+                result = inputTextArea.value.split('\n').join(delimiter + ' ');
             }
 
             outputTextArea.value = result;
